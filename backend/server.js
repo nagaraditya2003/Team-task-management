@@ -33,7 +33,8 @@ const frontendPath = path.join(__dirname, '../frontend/dist')
 app.use(express.static(frontendPath))
 
 // Catch-all route → sends React app
-app.get('*', (req, res) => {
+// Express 5 no longer accepts '*' path syntax here.
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'))
 })
 
